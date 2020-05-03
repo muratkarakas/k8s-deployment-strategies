@@ -1,0 +1,56 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: green-app
+  labels:
+    app: green-app
+spec:
+  replicas: 4
+  strategy: 
+    rollingUpdate:
+      maxSurge: 50%
+      maxUnavailable: 25%
+    type: RollingUpdate
+  selector:
+    matchLabels:
+      app: green-app
+  template:
+    metadata:
+      labels:
+        app: green-app
+    spec:
+      containers:
+        - name: green-app
+          image: argoproj/rollouts-demo:green
+          readinessProbe: 
+            httpGet:
+              path: /color
+              port: http
+            timeoutSeconds: 5
+            periodSeconds: 30
+          imagePullPolicy: Always
+          ports:
+          - name: http
+            containerPort: 8080
+          resources:
+            limits:
+              cpu: 250m
+              memory: 256Mi
+            requests:
+              cpu: 100m
+              memory: 128Mi
+---
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: green-app
+  labels:
+     app: green-app
+spec:
+  ports:
+  - port: 8080
+    targetPort: 8080
+    name: http
+  selector:
+    app: green-app

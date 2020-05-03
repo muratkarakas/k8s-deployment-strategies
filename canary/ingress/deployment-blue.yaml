@@ -1,0 +1,51 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: blue-app
+  labels:
+    app: blue-app
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: blue-app
+  template:
+    metadata:
+      labels:
+        app: blue-app
+    spec:
+      containers:
+        - name: blue-app
+          image: argoproj/rollouts-demo:blue
+          readinessProbe: 
+            httpGet:
+              path: /color
+              port: http
+            timeoutSeconds: 5
+            periodSeconds: 10
+          imagePullPolicy: Always
+          ports:
+          - name: http
+            containerPort: 8080
+          resources:
+            limits:
+              cpu: 250m
+              memory: 256Mi
+            requests:
+              cpu: 100m
+              memory: 128Mi
+---
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: blue-app
+  labels:
+     app: blue-app
+spec:
+  ports:
+  - port: 8080
+    targetPort: http
+    name: http
+  selector:
+    app: blue-app              
