@@ -1,1 +1,5 @@
-# k8s-deployment-strategies
+# TODO
+
+* Guideline & Notes
+
+* Argo Rollout samples for seamless & progressive rollouts
