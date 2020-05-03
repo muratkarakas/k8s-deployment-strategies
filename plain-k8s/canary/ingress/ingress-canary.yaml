@@ -14,11 +14,3 @@ spec:
         backend:
           serviceName: green-app
           servicePort: http
----
-apiVersion: v1
-data:
-  allow-backend-server-header: "true"
-  use-forwarded-headers: "true"
-kind: ConfigMap
-metadata:
-  name: nginx-configuration

@@ -8,5 +8,3 @@ kubectl delete svc green-app
 kubectl delete ingress blue-ingress
 
 kubectl delete ingress canary
-
-kubectl delete cm nginx-configuration

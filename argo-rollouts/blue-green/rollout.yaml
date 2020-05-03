@@ -1,0 +1,43 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Rollout
+metadata:
+  name: blue-green-app
+  labels:
+    app: blue-green-app
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: blue-green-app
+  template:
+    metadata:
+      labels:
+        app: blue-green-app
+    spec:
+      containers:
+      - name: blue-green-app
+        image: argoproj/rollouts-demo:green
+        imagePullPolicy: Always
+        ports:
+        - containerPort: 8080
+          name: http
+  strategy:
+    blueGreen:
+      autoPromotionEnabled: true
+      activeService: blue-green-app
+      scaleDownDelaySeconds: 120
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: blue-green-app
+  labels:
+    app: blue-green-app
+spec:
+  ports:
+  - protocol: TCP
+    port: 8080
+    name: http
+    targetPort: http
+  selector:
+    app: blue-green-app

@@ -1,0 +1,12 @@
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: blue-green
+spec:
+  rules:
+  - http:
+      paths:
+      - path: /
+        backend:
+          serviceName: green-app
+          servicePort: 8080

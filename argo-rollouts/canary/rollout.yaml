@@ -1,0 +1,76 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Rollout
+metadata:
+  name: canary-app
+  labels:
+    app: canary-app
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: canary-app
+  template:
+    metadata:
+      labels:
+        app: canary-app
+    spec:
+      containers:
+      - name: canary-app
+        image: argoproj/rollouts-demo:green
+        imagePullPolicy: Always
+        ports:
+        - containerPort: 8080
+          name: http
+  strategy:
+    canary:
+      canaryService: canary-service
+      stableService: stable-service 
+      trafficRouting:
+        nginx:
+           stableIngress: primary-ingress      
+      maxSurge: "25%"
+      maxUnavailable: 0
+      steps:
+      - setWeight: 10
+      - pause:
+          duration: 1m # 1 minutes
+      - setWeight: 25
+      - pause:
+          duration: 1m # 1 minutes
+      - setWeight: 50
+      - pause:
+          duration: 1m # 1 minutes
+      - setWeight: 75      
+      - pause: {} # pause indefinitely
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: stable-service
+  labels:
+    app: stable-service
+spec:
+  ports:
+  - protocol: TCP
+    port: 8080
+    name: http
+    targetPort: http
+  selector:
+    app: canary-app
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: canary-service
+  labels:
+    app: canary-service
+spec:
+  ports:
+  - protocol: TCP
+    port: 8080
+    name: http
+    targetPort: http
+  selector:
+    app: canary-app
+
