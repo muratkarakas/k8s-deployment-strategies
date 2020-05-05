@@ -1,0 +1,42 @@
+apiVersion: apps/v1
+kind: ReplicaSet
+metadata:
+  name: rollout-demo
+  labels:
+    app: rollout-demo
+spec:
+  replicas: 4
+  selector:
+    matchLabels:
+      app: rollout-demo
+  template:
+    metadata:
+      labels:
+        app: rollout-demo
+    spec:
+      containers:
+        - name: rollout-demo
+          image: argoproj/rollouts-demo:blue
+          readinessProbe: 
+            httpGet:
+              path: /color
+              port: http
+            timeoutSeconds: 1
+            periodSeconds: 10
+          livenessProbe: 
+            httpGet:
+              path: /color
+              port: http
+            timeoutSeconds: 1
+            periodSeconds: 10            
+          imagePullPolicy: Always
+          ports:
+          - name: http
+            containerPort: 8080
+          resources:
+            limits:
+              cpu: 250m
+              memory: 256Mi
+            requests:
+              cpu: 100m
+              memory: 128Mi
