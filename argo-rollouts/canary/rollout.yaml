@@ -16,8 +16,20 @@ spec:
     spec:
       containers:
       - name: canary-app
-        image: argoproj/rollouts-demo:green
+        image: argoproj/rollouts-demo:blue
         imagePullPolicy: Always
+        readinessProbe: 
+          httpGet:
+            path: /color
+            port: http
+          timeoutSeconds: 1
+          periodSeconds: 10
+        livenessProbe: 
+          httpGet:
+            path: /color
+            port: http
+          timeoutSeconds: 1
+          periodSeconds: 10         
         ports:
         - containerPort: 8080
           name: http
@@ -28,7 +40,7 @@ spec:
       trafficRouting:
         nginx:
            stableIngress: primary-ingress      
-      maxSurge: "25%"
+      maxSurge: "50%"
       maxUnavailable: 0
       steps:
       - setWeight: 10
@@ -40,8 +52,8 @@ spec:
       - setWeight: 50
       - pause:
           duration: 1m # 1 minutes
-      - setWeight: 75      
-      - pause: {} # pause indefinitely
+      - setWeight: 100      
+      #- pause: {} # pause indefinitely
 ---
 apiVersion: v1
 kind: Service

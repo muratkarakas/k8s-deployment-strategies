@@ -26,8 +26,14 @@ spec:
             httpGet:
               path: /color
               port: http
-            timeoutSeconds: 5
-            periodSeconds: 30
+            timeoutSeconds: 1
+            periodSeconds: 10
+          livenessProbe: 
+            httpGet:
+              path: /color
+              port: http
+            timeoutSeconds: 1
+            periodSeconds: 10            
           imagePullPolicy: Always
           ports:
           - name: http

@@ -5,7 +5,7 @@ metadata:
   labels:
     app: blue-green-app
 spec:
-  replicas: 3
+  replicas: 1
   selector:
     matchLabels:
       app: blue-green-app
@@ -22,13 +22,13 @@ spec:
           httpGet:
             path: /color
             port: http
-          timeoutSeconds: 1
+          timeoutSeconds: 5
           periodSeconds: 10
         livenessProbe: 
           httpGet:
             path: /color
             port: http
-          timeoutSeconds: 1
+          timeoutSeconds: 5
           periodSeconds: 10                
         ports:
         - containerPort: 8080
@@ -37,7 +37,11 @@ spec:
     blueGreen:
       autoPromotionEnabled: true
       activeService: blue-green-app
-      scaleDownDelaySeconds: 120
+      scaleDownDelaySeconds: 600
+      postPromotionAnalysis:
+        templates:
+        - templateName: baseline-scan
+   
 ---
 apiVersion: v1
 kind: Service
