@@ -1,4 +1,4 @@
-%title: Kubernetes Deployment Strategies
+%title: Deployment Strategies with Kubernetes
 %author: Murat Karakaş
 %date: YYYY-MM-DD
 
@@ -118,7 +118,65 @@ Think that again you have 3 instances of your application (3 pods)
 * Scale your blue instances 0 for fast rollback
 
 ---
+-> ## Blue-Green Deployment <-
 
+
+```java
+
+                                             Web Traffic
+                                                 |
+                                                 |
+                                                 |
+                                                 |
+                                                 v
+                                   +-----------------------------+
+                                   |         Load Balancer       |
+                                   +--------------+--------------+
+                                        %100       |
+                                  /--------------/
+                                  |
+                                  |
+                                  |
+                                  v
+                        +--------------+                     +--------------+
+                        |              |                     |              |
+                        |  Old Version |                     |  New Version | ----> check internally
+                        |              |                     |              |
+                        +------+-------+                     +-------+------+
+
+
+```
+
+---
+-> ## Blue-Green Deployment <-
+
+```java
+
+                                             Web Traffic
+                                                 |
+                                                 |
+                                                 |
+                                                 |
+                                                 v
+                                   +-----------------------------+
+                                   |         Load Balancer       |
+                                   +--------------+--------------+
+                                                  |  switch traffic
+                                                   \--------------\
+                                                                  |
+                                                                  |
+                                                                  |
+                                                                  v
+                        +--------------+                     +--------------+
+                        |              |                     |              |
+                        |  Old Version |                     |  New Version |
+                        |              |                     |              |
+                        +------+-------+                     +-------+------+
+
+
+```
+
+---
 -> ## Canary Release <-
 
 “Canary release* is a technique to reduce the risk of introducing a new software version in
@@ -139,6 +197,7 @@ the entire infrastructure and making it available to everybody.”
 * Increase the trafic ratio of new version step by step
 
 ---
+-> ## Canary Release <-
 
 ```java
 
@@ -167,6 +226,7 @@ the entire infrastructure and making it available to everybody.”
 ```
 
 ---
+-> ## Canary Release <-
 
 ```java
 
@@ -195,6 +255,7 @@ the entire infrastructure and making it available to everybody.”
 ```
 
 ---
+-> ## Canary Release <-
 
 ```java
                                              Web Traffic
@@ -206,7 +267,7 @@ the entire infrastructure and making it available to everybody.”
                                    +-----------------------------+
                                    |         Load Balancer       |
                                    +--------------+--------------+
-                                                  |      All Users - %100 Traffic
+                                                  |      All Users  100% Traffic
                                   /------X-------/ \--------------\
                                   |                               |
                                   |                               |
@@ -222,3 +283,10 @@ the entire infrastructure and making it available to everybody.”
 ```
 
 ---
+
+-> ## Applying  Strategies with Kubernetes <-
+
+* Supports all these major strategies out of the box
+* Deployment + Service + Ingress
+* Requires applying practices
+* User controlled flow
