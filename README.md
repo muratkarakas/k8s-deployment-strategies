@@ -7,12 +7,14 @@
 * Basics Of Kubernetes Deployment
 * Common Strategies
 * Introduction ArgoRollout
-* Demo
+* Demo : Applying Deployment Strategies
   * Plain K8s
   * Automated with ArgoRollout
 
 ---
--> ## Basics  <-
+-> ## Basics Of Kubernetes Deployment  <-
+
+Quick k8s deployment overview (k8s has other workload tpyes but will we will focus on this)
 
 * A Pod  is a group of one or more containers. Simplest application unit.
 
@@ -59,7 +61,7 @@
 
 -> ## Common Strategies  <-
 
-There are 2 main problems when rolling out to production
+There are 2 main problems when rolling out to production (Sure there are more..)
 
 * Downtime
 
