@@ -5,10 +5,15 @@
 -> # Road Map  <-
 
 * Basics Of Kubernetes Deployment
+
 * Common Strategies
+
 * Introduction ArgoRollout
+
 * Demo : Applying Deployment Strategies
+
   * Plain K8s
+
   * Automated with ArgoRollout
 
 ---
@@ -143,7 +148,7 @@ Think that again you have 3 instances of your application (3 pods)
                                    +-----------------------------+
                                    |         Load Balancer       |
                                    +--------------+--------------+
-                                        %100       |
+                                        %100      |
                                   /--------------/
                                   |
                                   |
@@ -201,10 +206,15 @@ the entire infrastructure and making it available to everybody.”
 -> ## Canary Release <-
 
 * Deploy the new version of your application
+
 * Don't stop or scale down old version
+
 * Forward limited traffic to new version(ex:%10)
+
 * Alternatively release new version to limited set of users
+
 * Check the results
+
 * Increase the trafic ratio of new version step by step
 
 ---
@@ -298,9 +308,14 @@ the entire infrastructure and making it available to everybody.”
 -> ## Applying  Strategies with Kubernetes <-
 
 * Supports all these major strategies out of the box
+
 * Deployment + Service + Ingress
+
 * Requires applying practices
+
 * User controlled flow
+
+---
 
 -> ## Argo Rolluts <-
 
@@ -314,13 +329,22 @@ the entire infrastructure and making it available to everybody.”
 
 * Has kubectl plugin for commandline
 
+---
+
 -> ## Demo <-
 
+Implementing Deployment Strategies with Kubernetes
+
 * Plain K8s
+
   * Blue/Green
+
   * Canary
 
 * Automated with ArgoRollout
+
   * Blue/Green
+
   * Canary
+
   * Blue/Green with autmatic rollback with analysis
