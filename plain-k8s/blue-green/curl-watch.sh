@@ -1,0 +1,1 @@
+while (true); do   curl  "http://localhost/color"; done
