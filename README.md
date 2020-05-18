@@ -59,6 +59,16 @@
 
 -> ## Common Strategies  <-
 
+There are 2 main problems when rolling out to production
+
+* Downtime
+
+* Testing with real user and data
+
+---
+
+-> ## Common Strategies  <-
+
 * Rolling Update
 
 * ReCreate
