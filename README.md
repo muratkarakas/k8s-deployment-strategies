@@ -9,7 +9,7 @@
 * Introduction ArgoRollout
 * Demo
   * Plain K8s
-  * Automated with ArgoRolout
+  * Automated with ArgoRollout
 
 ---
 -> ## Basics  <-
@@ -119,7 +119,6 @@ Think that again you have 3 instances of your application (3 pods)
 
 ---
 -> ## Blue-Green Deployment <-
-
 
 ```java
 
@@ -290,3 +289,25 @@ the entire infrastructure and making it available to everybody.”
 * Deployment + Service + Ingress
 * Requires applying practices
 * User controlled flow
+
+
+-> ## Argo Rolluts <-
+
+* Argo Rollouts provides deployment strategies such as Blue Green and Canary to Kubernetes with automates process.
+
+* Has built in controller name "ArgoRollout" which  has advanced controlls compared to classic k8s "Deployment".
+
+* Uses direct kubernetes load balancer features (Service & Ingress ). No additional networking components.
+
+* Supports automated release analysis (Post or Progressive)
+
+* Has kubectl plugin for commandline
+
+-> ## Demo <-
+
+* Plain K8s
+  * Automated
+  * Automated
+  * Automated
+  * Automated
+* Automated with ArgoRollout
