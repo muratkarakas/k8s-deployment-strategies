@@ -1,1 +1,0 @@
-while (true); do   curl  "http://localhost/color"; sleep 1;echo "\n"; done

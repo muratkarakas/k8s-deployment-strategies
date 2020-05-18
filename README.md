@@ -290,7 +290,6 @@ the entire infrastructure and making it available to everybody.”
 * Requires applying practices
 * User controlled flow
 
-
 -> ## Argo Rolluts <-
 
 * Argo Rollouts provides deployment strategies such as Blue Green and Canary to Kubernetes with automates process.
@@ -306,8 +305,10 @@ the entire infrastructure and making it available to everybody.”
 -> ## Demo <-
 
 * Plain K8s
-  * Automated
-  * Automated
-  * Automated
-  * Automated
+  * Blue/Green
+  * Canary
+
 * Automated with ArgoRollout
+  * Blue/Green
+  * Canary
+  * Blue/Green with autmatic rollback with analysis
