@@ -1,6 +1,6 @@
 %title: Deployment Strategies with Kubernetes
 %author: Murat Karakaş
-%date: YYYY-MM-DD
+%date: 05-05-2020
 
 -> # Road Map  <-
 
