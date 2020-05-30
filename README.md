@@ -1,4 +1,4 @@
-%title: Deployment Strategies with Kubernetes
+%title: Deployment Strategies Applied With Kubernetes
 %author: Murat Karakaş
 %date: 05-05-2020
 
