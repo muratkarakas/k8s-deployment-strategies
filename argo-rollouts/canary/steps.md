@@ -16,6 +16,6 @@
 
 * After successful rollout argo rollout will terminate old version(blue).
 
-* Monitor blue/green switch from UI [http://localhost](http://localhost)
+* Monitor blue/green switch from UI [http://canary.local](http://canary.local)
 
 * run ./cleanup.sh
