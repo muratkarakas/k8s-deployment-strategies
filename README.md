@@ -317,7 +317,7 @@ the entire infrastructure and making it available to everybody.”
 
 ---
 
--> ## Argo Rolluts <-
+-> ## ArgoRollout <-
 
 * Argo Rollouts provides deployment strategies such as Blue Green and Canary to Kubernetes with automates process.
 
