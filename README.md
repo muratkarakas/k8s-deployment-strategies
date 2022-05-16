@@ -25,8 +25,6 @@ Quick k8s deployment overview (k8s has other workload tpyes but will we will foc
 
 * ReplicaSet is used for managing identical set of pods working together and guarantees availibilty.
 
-* ReplicaSet is not declarative
-
 * Deployment is higher-level concept over ReplicaSet that provides declarative update,rollback
 
 ---
