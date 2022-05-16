@@ -27,6 +27,8 @@ Quick k8s deployment overview (k8s has other workload tpyes but will we will foc
 
 * Deployment is higher-level concept over ReplicaSet that provides declarative update,rollback
 
+* Kubernetes has more workload types for different types of applications
+
 ---
 
 ```java
