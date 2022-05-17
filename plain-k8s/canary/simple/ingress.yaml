@@ -1,13 +1,17 @@
-apiVersion: extensions/v1beta1
+apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
   name: canary-simple
 spec:
+  ingressClassName: nginx
   rules:
-  - http:
+   - host: localhost
+     http:
       paths:
       - path: /
+        pathType: Prefix
         backend:
-          serviceName: canary-simple
-          servicePort: http
-
+          service:
+           name: canary-simple
+           port: 
+             name: http

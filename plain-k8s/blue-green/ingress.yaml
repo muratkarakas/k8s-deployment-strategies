@@ -1,12 +1,17 @@
-apiVersion: extensions/v1beta1
+apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
-  name: blue-green
+  name: blue-green-app
 spec:
+  ingressClassName: nginx
   rules:
-  - http:
+   - host: localhost
+     http:
       paths:
       - path: /
+        pathType: Prefix
         backend:
-          serviceName: green-app
-          servicePort: 8080
+          service:
+           name: blue-app
+           port: 
+             name: http

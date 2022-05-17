@@ -4,4 +4,4 @@ kubectl delete svc blue-app
 kubectl delete  deploy green-app
 kubectl delete svc green-app
 
-kubectl delete ingress blue-green
+kubectl delete ingress blue-green-app

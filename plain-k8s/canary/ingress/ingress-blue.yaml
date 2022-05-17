@@ -1,13 +1,17 @@
-apiVersion: extensions/v1beta1
+apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
   name: blue-ingress
 spec:
+  ingressClassName: nginx
   rules:
-  - host: canary.local
-    http:
+   - host: localhost
+     http:
       paths:
       - path: /
+        pathType: Prefix
         backend:
-          serviceName: blue-app
-          servicePort: 8080
+          service:
+           name:  blue-app
+           port: 
+             name: http
